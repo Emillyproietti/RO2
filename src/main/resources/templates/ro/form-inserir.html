@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="br">
 <head>
-    <title>Registro de Ocorrência</title>
+    <title>Cadastro de R.O</title>
     <div th:replace="~{/fragments/heads.html :: heads}"></div>
 </head>
 <body>
@@ -20,86 +20,155 @@
             <!-- End Navbar -->
         </div>
 
-        <div class="main" style="margin-left:30px">
-            <h2>Registro de Ocorrência</h2>
-            <form>
-                <div class="form-row">
-                    <div class="form-group col-md-8">
-                        <label for="nome-completo">Nome completo:</label>
-                        <input type="text" class="form-control" id="nome-completo" placeholder="Nome completo">
-                    </div>
 
-                    <div class="form-group col-md-3">
-                        <label for="data">Data:</label>
-                        <div class="input-group">
-                            <input type="date" class="form-control" id="data" style="width: 200px">
+        <div class="container">
+            <div class="page-inner">
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3">Cadastrar R.O</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <form th:action="@{/ro/salvar}" th:object="${ro}" method="post">
+                                <input type="hidden" th:field="*{professor}">
+                                <div class="card-header">
+                                    <div class="card-title">Dados da Turma</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <div class="form-group">
+
+                                                <!-- Select de Alunos -->
+                                                <label for="aluno">Aluno</label>
+                                                <select
+                                                        class="form-control"
+                                                        id="aluno"
+                                                        th:field="*{aluno}"
+                                                >
+                                                    <option value="">Selecione o Aluno</option>
+                                                    <option
+                                                            th:each="aluno : ${alunos}"
+                                                            th:value="${aluno}"
+                                                            th:text="${aluno.nome}"
+                                                    ></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!-- Select de Enum TipoRegistro -->
+                                                <label for="tipoRegistro">Tipo de Registro</label>
+                                                <select
+                                                        class="form-control"
+                                                        id="tipoRegistro"
+                                                        th:field="*{tipoRegistro}"
+                                                >
+                                                    <option value="">Selecione o Tipo de Registro</option>
+                                                    <option
+                                                            th:each="tipoRegistro : ${T(br.senai.sp.gestaoro.enums.TipoRegistro).values()}"
+                                                            th:value="${tipoRegistro}"
+                                                            th:text="${tipoRegistro.descricao}"
+                                                    ></option>
+                                                </select>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="turma">Turma</label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="turma"
+                                                        placeholder="Informe o Nome"
+
+                                                />
+                                            </div>
+
+
+                                            <div class="form-group col-md-3 col-lg-3">
+                                                <label for="dataInicio">Data</label>
+                                                <input
+                                                        type="date"
+                                                        class="form-control"
+                                                        id="dataInicio"
+                                                        placeholder="Informe o Nome"
+                                                        th:field="*{dtRo}"
+                                                />
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="dsEncaminhamento">Encaminhamento</label>
+                                                <textarea
+                                                        class="form-control"
+                                                        id="dsEncaminhamento"
+                                                        rows="6"
+                                                        th:field="*{dsEncaminhamento}"
+                                                ></textarea>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="dsMotivo">Motivo</label>
+                                                <textarea
+                                                        class="form-control"
+                                                        id="dsMotivo"
+                                                        rows="6"
+                                                        th:field="*{dsMotivo}"
+                                                ></textarea>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="dsObservacao">Observação</label>
+                                                <textarea
+                                                        class="form-control"
+                                                        id="dsObservacao"
+                                                        rows="6"
+                                                        th:field="*{dsObservacao}"
+                                                ></textarea>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!-- Select de Enum Encerramento -->
+                                                <label for="encerramento">Encerramento</label>
+                                                <select
+                                                        class="form-control"
+                                                        id="encerramento"
+                                                        th:field="*{encerramento}"
+                                                >
+                                                    <option value="">Selecione o Encerramento</option>
+                                                    <option
+                                                            th:each="encerramento : ${T(br.senai.sp.gestaoro.enums.Encerramento).values()}"
+                                                            th:value="${encerramento}"
+                                                            th:text="${encerramento.descricao}"
+                                                    ></option>
+                                                </select>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <button class="btn btn-success" type="submit">Salvar</button>
+                                    <button class="btn btn-danger">Cancelar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="periodo">Período:</label>
-                        <input type="text" class="form-control" id="periodo" placeholder="Período">
-                    </div>
-
-                    <div class="form-group col-md-3">
-                        <label for="nome-turma">Turma:</label>
-                        <input type="text" class="form-control" id="nome-turma" placeholder="Turma">
-
-                    </div>
-
-                    <div class="form-group col-md-5">
-                        <label for="docente">Docente:</label>
-                        <input type="text" class="form-control" id="docente" placeholder="Nome do Docente">
-                    </div>
-
-
-                    <div class="form-group col-md-5">
-                        <label for="inicio-curso">Prazo de retorno:</label>
-                        <div class="input-group">
-                            <input type="date" class="form-control" id="inicio-curso" style="width: 200px">
-                        </div>
-                    </div>
-                    <div class="form-group col-md-12">
-
-                        <div class="input-group">
-                            <label>Tipo de Ocorrência:</label>
-                            <input type="radio" class="form-control" name="tipoOcorrencia[]"/>
-                            R.O de encaminhamento
-                            <input type="radio" class="form-control" name="tipoOcorrencia[]"/>
-                            R.O de registro
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <textarea class="form-control mt-3" rows="5" placeholder="Motivo da ocorrência"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <div class="button-container" style="text-align:center;">
-                        <button style="margin-left:20px" type="button" class="btn btn-danger">Cancelar</button>
-                        <button style="margin-left:20px" type="submit" class="btn btn-primary">Salvar</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
 
-        <div th:replace="~{/fragments/footer.html :: footer}"></div>
 
+        <div th:replace="~{/fragments/footer.html :: footer}"></div>
     </div>
 
 
-
-
-
-</div>
-
-
-
-
     <!-- End Custom template -->
+</div>
 <div th:replace="~{/fragments/scripts.html :: scripts}"></div>
 <div th:replace="~{/fragments/datatables.html :: datatables}"></div>
 

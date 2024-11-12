@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+    <title>Cadastro de Turma</title>
+    <div th:replace="~{/fragments/heads.html :: heads}"></div>
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/fragments/sidebar.html :: sidebar}"></div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <div class="main-header">
+
+            <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "logo" -->
+            <div th:replace="~{/fragments/logo.html :: logo}"></div>
+            <!-- Navbar Header -->
+            <div th:replace="~{/fragments/navbar.html :: navbar}"></div>
+            <!-- End Navbar -->
+        </div>
+
+
+        <div class="container">
+            <div class="page-inner">
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3">Cadastrar Turmas</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <form th:action="@{/turma/salvar}" th:object="${turma}" method="post">
+                                <div class="card-header">
+                                    <div class="card-title">Dados da Turma</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <div class="form-group">
+                                                <label for="curso">Curso</label>
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="curso"
+                                                        placeholder="Informe o Nome"
+                                                        th:field="*{curso}"
+                                                />
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dataInicio">Inicio da Turma</label>
+                                                <input
+                                                        type="date"
+                                                        class="form-control"
+                                                        id="dataInicio"
+                                                        placeholder="Informe o Nome"
+                                                        th:field="*{dataInicio}"
+                                                />
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="dataConclusao">Conclusao da Turma</label>
+                                                <input
+                                                        type="date"
+                                                        class="form-control"
+                                                        id="dataConclusao"
+                                                        placeholder="Informe o Nome"
+                                                        th:field="*{dataConclusao}"
+                                                />
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                    <button class="btn btn-success" type="submit">Salvar</button>
+                                    <button class="btn btn-danger">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div th:replace="~{/fragments/footer.html :: footer}"></div>
+    </div>
+
+
+    <!-- End Custom template -->
+</div>
+<div th:replace="~{/fragments/scripts.html :: scripts}"></div>
+<div th:replace="~{/fragments/datatables.html :: datatables}"></div>
+
+</body>
+</html>

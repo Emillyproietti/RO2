@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+    <title>Registro de Ocorrência</title>
+    <div th:replace="~{/fragments/heads.html :: heads}"></div>
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/fragments/sidebar.html :: sidebar}"></div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <div class="main-header">
+
+            <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "logo" -->
+            <div th:replace="~{/fragments/logo.html :: logo}"></div>
+            <!-- Navbar Header -->
+            <div th:replace="~{/fragments/navbar.html :: navbar}"></div>
+            <!-- End Navbar -->
+        </div>
+
+        <div class="main" style="margin-left:30px">
+            <h2>Registro de Ocorrência</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="nome-completo">Nome completo:</label>
+                        <input type="text" class="form-control" id="nome-completo" placeholder="Nome completo">
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="data">Data:</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="data" style="width: 200px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="periodo">Período:</label>
+                        <input type="text" class="form-control" id="periodo" placeholder="Período">
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="nome-turma">Turma:</label>
+                        <select name="nome-turma" id="nome-turma"
+                                style="height:40px; border-radius: 5px; border: 1px solid #ccc; width: 190px;">
+                            <option value="">Selecione a Turma</option>
+                            <option value="1">Turma A</option>
+                            <option value="2">Turma B</option>
+                            <option value="3">Turma C</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-5">
+                        <label for="docente">Docente:</label>
+                        <input type="text" class="form-control" id="docente" placeholder="Nome do Docente">
+                    </div>
+
+
+                    <div class="form-group col-md-5">
+                        <label for="inicio-curso">Prazo de retorno:</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="inicio-curso" style="width: 200px">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+
+                        <div class="input-group">
+                            <label>Tipo de Ocorrência:</label>
+                            <input type="radio" class="form-control" name="tipoOcorrencia[]"/>
+                            R.O de encaminhamento
+                            <input type="radio" class="form-control" name="tipoOcorrencia[]"/>
+                            R.O de registro
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control mt-3" rows="5" placeholder="Motivo da ocorrência"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="button-container" style="text-align:center;">
+                        <button style="margin-left:20px" type="button" class="btn btn-danger">Cancelar</button>
+                        <button style="margin-left:20px" type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div th:replace="~{/fragments/footer.html :: footer}"></div>
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+    <!-- End Custom template -->
+<div th:replace="~{/fragments/scripts.html :: scripts}"></div>
+<div th:replace="~{/fragments/datatables.html :: datatables}"></div>
+
+</body>
+</html>

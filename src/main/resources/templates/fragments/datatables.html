@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="datatables">
+    <script>
+        $(document).ready(function () {
+            $("#basic-datatables").DataTable({
+                language: {
+                    search: "Pesquisar:",
+                    // traduzir label de "Showing 1 to 10 of 57 entries"
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    // traduzir label de "Showing 1 to 10 of 57 entries"
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    // traduzir label de "Showing 1 to 10 of 57 entries"
+                    infoFiltered: "(filtrado de _MAX_ registros)",
+                    // traduzir label de "Showing 1 to 10 of 57 entries"
+                    infoPostFix: "",
+                    // traduzir label de "Showing 1 to 10 of 57 entries"
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    paginate:{
+                        first: "Primeiro",
+                        last: "Último",
+                        next: "Próximo",
+                        previous: "Anterior",
+                    },
+                },
+            });
+        });
+
+
+    </script>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+    <title>Cadastro de Professores</title>
+    <div th:replace="~{/fragments/heads.html :: heads}"></div>
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <div th:replace="~{/fragments/sidebar.html :: sidebar}"></div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <div class="main-header">
+
+            <!-- Fragmento de código que será substituído pelo conteúdo do fragmento "logo" -->
+            <div th:replace="~{/fragments/logo.html :: logo}"></div>
+            <!-- Navbar Header -->
+            <div th:replace="~{/fragments/navbar.html :: navbar}"></div>
+            <!-- End Navbar -->
+        </div>
+
+
+        <div class="container">
+            <div class="page-inner">
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3">Cadastrar Professor</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <form th:action="@{/professor/salvar}" th:object="${professor}" method="post">
+                            <input type="hidden" th:field="*{id}">
+                            <div class="card-header">
+                                <div class="card-title">Dados do Professor</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="nome">Nome</label>
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="nome"
+                                                    placeholder="Informe o Nome"
+                                                    th:field="*{nome}"
+                                            />
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cpf">CPF</label>
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="cpf"
+                                                    placeholder="Informe o Nome"
+                                                    th:field="*{cpf}"
+                                            />
+
+                                        </div>
+
+
+                                        <div class="form-group form-inline">
+                                            <label
+                                                    for="telefone"
+                                                    class="col-md-12 col-form-label"
+                                            >Telefone</label
+                                            >
+                                            <div class="col-md-12 p-0">
+                                                <input
+                                                        type="text"
+                                                        class="form-control input-full"
+                                                        id="telefone"
+                                                        placeholder="Informe o Telefone"
+                                                        th:field="*{telefone}"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input
+                                                    type="email"
+                                                    class="form-control"
+                                                    id="email"
+                                                    placeholder="Informe o Email"
+                                                    th:field="*{email}"
+                                            />
+                                        </div>
+
+                                        <!-- select de turmas -->
+                                        <div class="form-group">
+                                        <label for="turma">Turma</label>
+                                        <select
+                                                class="form-control"
+                                                id="turma"
+                                                th:field="*{turma}"
+                                        >
+                                            <option value="">Selecione uma turma</option>
+                                            <option
+                                                    th:each="turma : ${turmas}"
+                                                    th:value="${turma.id}"
+                                                    th:text="${turma.curso}"
+                                            ></option>
+                                        </select>
+                                    </div>
+
+
+
+                                        <div class="form-group">
+                                            <label for="senha">Senha</label>
+                                            <input
+                                                    type="senha"
+                                                    class="form-control"
+                                                    id="senha"
+                                                    placeholder="Informe o Email"
+                                                    th:field="*{senha}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn btn-success" type="submit">Salvar</button>
+                                <button class="btn btn-danger">Cancelar</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div th:replace="~{/fragments/footer.html :: footer}"></div>
+    </div>
+
+
+    <!-- End Custom template -->
+</div>
+<div th:replace="~{/fragments/scripts.html :: scripts}"></div>
+<div th:replace="~{/fragments/datatables.html :: datatables}"></div>
+
+</body>
+</html>

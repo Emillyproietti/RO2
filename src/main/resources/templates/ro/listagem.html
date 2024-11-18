@@ -73,7 +73,7 @@
 
                                         <tr th:each="ro : ${ros}">
                                             <td><span th:text="${ro.id}"> Id </span></td>
-                                            <td><span th:text="${ro.aluno.turma}"> Turma </span></td>
+                                            <td><span th:text="${ro.aluno.turma.curso}"> Turma </span></td>
                                             <td><span th:text="${ro.aluno.nome}"> Aluno </span></td>
                                             <td><span th:text="${ro.professor.nome}"> Proefssor </span></td>
                                             <td><span th:text="${#dates.format(ro.dtRo, 'dd/MM/yyyy')}"> Data de Conclusão </span></td>

@@ -53,7 +53,7 @@ public class TurmaController {
         attributes.addFlashAttribute("mensagem", "Turma salva com sucesso!");
 
         turmaRepository.save(turma);
-        return "redirect:/aluno";
+        return "redirect:/turma";
     }
 
     @GetMapping("/form-alterar/{id}")

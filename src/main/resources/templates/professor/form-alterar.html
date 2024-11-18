@@ -30,7 +30,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <form th:action="@{/professor/salvar}" th:object="${professor}" method="post">
-                            <input type="hidden" th:field="*{id}">
+                                <input type="hidden" th:field="*{id}">
                             <div class="card-header">
                                 <div class="card-title">Dados do Professor</div>
                             </div>
@@ -111,11 +111,11 @@
                                         <div class="form-group">
                                             <label for="senha">Senha</label>
                                             <input
-                                                    type="senha"
+                                                    type="password"
                                                     class="form-control"
                                                     id="senha"
                                                     placeholder="Informe o Email"
-                                                    th:field="*{senha}"
+                                                    th:field="*{user.password}"
                                             />
                                         </div>
                                     </div>

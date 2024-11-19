@@ -6913,5 +6913,100 @@ body {
     font-size: 18px !important; } }
 
 /* Estilos personalizados para os cards */
+.card-container {
+  display: flex;
+  justify-content: space-around;
+}
+.card-1 {
+  background-color: #fff;
+  border-left: 3px solid greenyellow;
+  border-radius: 7px;
+  max-height: 100px; /* Define uma altura máxima */
+  padding: 19px;
+  text-align: center;
+  font-family: Arial, sans-serif; /* Adicione uma fonte aqui */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
+  -2px -2px 5px rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
+}
+
+.card-title-1{
+  font-size: 17px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: greenyellow;
+  /* Cor do título */
+  margin-bottom: 10px;
+}
+
+
+
+.card-2 {
+  background-color: #fff;
+  border-left: 3px solid #e74a3b;
+  border-radius: 7px;
+  padding: 19px;
+  max-height: 100px;
+  text-align: center;
+  font-family: Arial, sans-serif; /* Adicione uma fonte aqui */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
+  -2px -2px 5px rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+}
+
+.card-title-2{
+  font-size: 17px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #e74a3b;
+  /* Cor do título */
+  margin-bottom: 10px;
+}
+
+.card-4 {
+  background-color: #fff;
+  border-left: 3px solid #e83e8c;
+  border-radius: 7px;
+  padding: 19px;
+  max-height: 100px;
+  text-align: center;
+  font-family: Arial, sans-serif; /* Adicione uma fonte aqui */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3),
+  -2px -2px 5px rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+}
+
+.card-title-4{
+  font-size: 17px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #e83e8c;
+  /* Cor do título */
+  margin-bottom: 10px;
+}
+
+.card-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: black; /* Cor do valor */
+}
+
+.progress {
+  height: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background-color:cornflowerblue;
+  height: 100%;
+}
+.card:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
 /*# sourceMappingURL=kaiadmin.css.map */

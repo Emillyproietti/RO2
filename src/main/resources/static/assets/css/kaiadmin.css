@@ -6931,7 +6931,7 @@ body {
 
 }
 
-.card-title-1{
+.card-title1{
   font-size: 17px;
   font-weight: bold;
   text-transform: uppercase;
@@ -7009,4 +7009,6 @@ body {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
 }
+
+/*Style Nav
 /*# sourceMappingURL=kaiadmin.css.map */

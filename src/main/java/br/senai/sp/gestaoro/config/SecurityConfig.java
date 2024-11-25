@@ -40,12 +40,17 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers(new AntPathRequestMatcher("/login/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/aqv/**")).hasAnyAuthority("AQV")
+                        .requestMatchers(new AntPathRequestMatcher("/aluno/**")).hasAnyAuthority("AQV")
+                        .requestMatchers(new AntPathRequestMatcher("/professor/**")).hasAnyAuthority("AQV")
+                        .requestMatchers(new AntPathRequestMatcher("/turma/**")).hasAnyAuthority("AQV")
+                        .requestMatchers(new AntPathRequestMatcher("/user/**")).hasAnyAuthority("AQV")
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(userService)
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home")
+                        .defaultSuccessUrl("/ro")
                         .permitAll()
                 )
                 .logout((logout) -> logout

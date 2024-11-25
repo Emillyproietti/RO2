@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<html xmlns:th="http://www.thymeleaf.org" lang="br"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>Cadastro de R.O</title>
     <div th:replace="~{/fragments/heads.html :: heads}"></div>
@@ -30,6 +31,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <form th:action="@{/ro/salvar}" th:object="${ro}" method="post">
+                                <input type="hidden" th:field="*{id}">
                                 <input type="hidden" th:field="*{professor}">
                                 <div class="card-header">
                                     <div class="card-title">Dados da Turma</div>
@@ -129,7 +131,7 @@
 
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group" sec:authorize="hasAnyAuthority('AQV')">
                                                 <!-- Select de Enum Encerramento -->
                                                 <label for="encerramento">Encerramento</label>
                                                 <select
@@ -171,12 +173,19 @@
 </div>
 <div th:replace="~{/fragments/scripts.html :: scripts}"></div>
 <div th:replace="~{/fragments/datatables.html :: datatables}"></div>
+<div th:replace="~{/fragments/scripts.html :: scripts}"></div>
+<div th:replace="~{/fragments/datatables.html :: datatables}"></div>
 
 </body>
 </html>
 
 <script>
     $(document).ready(function () {
+
+        var id = $("#aluno").val();
+        $.get('/api/aluno/' + id, function (data) {
+            $('#turma').val(data);
+        });
 
         // Recupera o curso do aluno selecionado pela api/aluno/{id}
         $('#aluno').change(function () {

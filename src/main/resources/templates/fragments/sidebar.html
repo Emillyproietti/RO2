@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
 <body>
 <div th:fragment="sidebar">
     <!-- Sidebar -->
@@ -14,7 +17,7 @@
                             class="navbar-brand"
                             height="60"
                     />-->
-                    <span class="navbar-brand" style="color: #fff;"><h3>Gestão de R.O</h3></span>
+                    <span class="navbar-brand" style="color: #fff;">Gestão de R.O</span>
                 </a>
                 <div class="nav-toggle">
                     <button class="btn btn-toggle toggle-sidebar">
@@ -39,46 +42,40 @@
                             <p>Home</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('PROFESSOR','AQV')">
                         <a href="/ro">
                             <i class="icon-doc"></i>
                             <p>R.O</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('AQV')">
                         <a href="/aluno">
                             <i class="fas fa-users"></i>
                             <p>Alunos</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('AQV')">
                         <a href="/professor">
                             <i class="fas fa-users"></i>
                             <p>Professores</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('AQV')">
                         <a href="/aqv">
                             <i class="fas fa-users"></i>
                             <p>AQVs</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('AQV')">
                         <a href="/turma">
                             <i class="fas fa-users"></i>
                             <p>Turmas</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('AQV')">
                         <a href="/user">
                             <i class="fas fa-users"></i>
                             <p>Usuários</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/login">
-                            <i class="icon-logout"></i>
-                            <p>Sair</p>
                         </a>
                     </li>
                 </ul>

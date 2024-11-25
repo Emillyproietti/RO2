@@ -1,9 +1,6 @@
 package br.senai.sp.gestaoro.controller;
 
-import br.senai.sp.gestaoro.model.Professor;
-import br.senai.sp.gestaoro.model.Ro;
-import br.senai.sp.gestaoro.model.Turma;
-import br.senai.sp.gestaoro.model.User;
+import br.senai.sp.gestaoro.model.*;
 import br.senai.sp.gestaoro.repository.AlunoRepository;
 import br.senai.sp.gestaoro.repository.ProfessorRepository;
 import br.senai.sp.gestaoro.repository.RoRepository;
@@ -21,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/ro")
 public class RoController {
@@ -34,9 +33,30 @@ public class RoController {
     @Autowired
     private ProfessorRepository professorRepository;
 
+    @Autowired
+    private JavaSmtpGmailSenderService javaSmtpGmailSenderService;
+
     @GetMapping
     public String listagem(Model model) {
-        model.addAttribute("ros", roRepository.findAll());
+
+        // recupera o usuário logado getPrincipal
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+
+        List<Role> roles = (List<Role>) user.getRoles();
+
+        Role role = roles.get(0);
+
+        List<Ro> listRoo = roRepository.findAll();
+        model.addAttribute("ros", listRoo);
+
+        if (!Object.equals(role.getName(), "AQV")) {
+            Long id = user.getId();
+            Professor professor = professorRepository.findByUserId(id);
+            List<Ro> listRo = roRepository.findByProfessor(professor);
+            model.addAttribute("ros", listRo);
+        }
+
         return "ro/listagem";
     }
 
@@ -69,15 +89,33 @@ public class RoController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
 
-        Long id = user.getId();
+        //recupera a role
+        List<Role> roles = (List<Role>) user.getRoles();
+        Role role = roles.get(0);
 
+
+
+
+
+        Long id = user.getId();
         Professor professor = professorRepository.findByUserId(id);
 
-        ro.setProfessor(professor);
+        if (!Object.equals(role.getName(), "AQV")) {
+
+            Long id2 = user.getId();
+            Professor professor2 = professorRepository.findByUserId(id2);
+
+            ro.setProfessor(professor2);
+        }
+
+
+
+
+        javaSmtpGmailSenderService.sendEmail(professor.getEmail(), "R.O Registrada pelo sistema", "Uma R.O foi registrada para o aluno ");
 
 
         // Mensagem de sucesso
-        attributes.addFlashAttribute("mensagem", "Registro de Ocorencia salva com sucesso!");
+        attributes.addFlashAttribute("mensagem", "R.O salva com sucesso!");
 
         roRepository.save(ro);
         return "redirect:/ro";
@@ -87,6 +125,8 @@ public class RoController {
     public String formAlterar(@PathVariable("id") Long id, Model model) {
 
         Ro ro = roRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido"));
+        // Alunos cadastrados
+        model.addAttribute("alunos", alunoRepository.findAll());
 
         model.addAttribute("ro", ro);
         return "ro/form-alterar";
@@ -95,7 +135,7 @@ public class RoController {
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Long id, RedirectAttributes attributes) {
         roRepository.deleteById(id);
-        attributes.addFlashAttribute("mensagem", "Registro de Ocorencia excluída com sucesso!");
+        attributes.addFlashAttribute("mensagem", "R.O excluída com sucesso!");
         return "redirect:/ro";
     }
 

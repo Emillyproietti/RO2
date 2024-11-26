@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +31,8 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+
+    @CPF(message = "CPF inválido")
     private String cpf;
     private String telefone;
     private String email;
@@ -40,8 +43,5 @@ public class Pessoa {
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
-
-
-
 
 }

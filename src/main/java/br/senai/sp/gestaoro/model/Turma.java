@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -16,7 +14,9 @@ import java.util.List;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id"
 )
-@Data
+//@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Turma {

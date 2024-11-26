@@ -5,6 +5,7 @@ import br.senai.sp.gestaoro.repository.AlunoRepository;
 import br.senai.sp.gestaoro.repository.ProfessorRepository;
 import br.senai.sp.gestaoro.repository.RoRepository;
 import br.senai.sp.gestaoro.repository.TurmaRepository;
+import br.senai.sp.gestaoro.service.JavaSmtpGmailSenderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/ro")
@@ -45,12 +47,13 @@ public class RoController {
 
         List<Role> roles = (List<Role>) user.getRoles();
 
-        Role role = roles.get(0);
+        Role role;
+        role = roles.get(0);
 
         List<Ro> listRoo = roRepository.findAll();
         model.addAttribute("ros", listRoo);
 
-        if (!Object.equals(role.getName(), "AQV")) {
+        if (!Objects.equals(role.getName(), "AQV")) {
             Long id = user.getId();
             Professor professor = professorRepository.findByUserId(id);
             List<Ro> listRo = roRepository.findByProfessor(professor);
@@ -100,7 +103,7 @@ public class RoController {
         Long id = user.getId();
         Professor professor = professorRepository.findByUserId(id);
 
-        if (!Object.equals(role.getName(), "AQV")) {
+        if (!Objects.equals(role.getName(), "AQV")) {
 
             Long id2 = user.getId();
             Professor professor2 = professorRepository.findByUserId(id2);

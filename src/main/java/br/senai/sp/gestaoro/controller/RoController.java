@@ -47,13 +47,13 @@ public class RoController {
 
         List<Role> roles = (List<Role>) user.getRoles();
 
-        Role role;
-        role = roles.get(0);
+
+        Role Role = roles.get(0);
 
         List<Ro> listRoo = roRepository.findAll();
         model.addAttribute("ros", listRoo);
 
-        if (!Objects.equals(role.getName(), "AQV")) {
+        if (!Objects.equals(Role.getName(), "AQV")) {
             Long id = user.getId();
             Professor professor = professorRepository.findByUserId(id);
             List<Ro> listRo = roRepository.findByProfessor(professor);

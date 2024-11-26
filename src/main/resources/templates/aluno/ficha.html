@@ -27,23 +27,71 @@
                     <h3 class="fw-bold mb-3">Ficha</h3>
                 </div>
 
-                <a
-                        th:href="@{/aluno/form-inserir}"
-                        class="btn btn-primary"
-                        style="float: right"
-                > Turma </a>
-                <a
 
-                        th:href="@{/aluno}"
-                        class="btn btn-primary"
-                        style="float: right"
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Ficha dos Alunos</span>
+<a
+                                    th:href="@{/aluno}"
+                                    class="btn btn-primary"
+                                    style="float: right"
 
-                > < </a>
+                            > < </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table
+                                        id="basic-datatables"
+                                        class="display table table-striped table-hover"
+                                >
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 7%">ID</th>
+                                        <th>Professor</th>
+                                        <th>Turma</th>
 
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr th:if="${ros.empty}">
+                                        <td colspan="6">Nenhum registro encontrado</td>
+                                    </tr>
+
+                                    <tr th:each="ro : ${ros}">
+                                        <td style="width: 7%"><span th:text="${ro.id}">ID</span></td>
+                                        <td><span th:text="${ro.professor.nome}">Nome</span></td>
+                                        <td><span th:text="${ro.aluno.turma.curso}">Turma</span></td>
+
+                                        <td class="text-center" style="width: 7%">
+                                            <a th:href="@{/ro/form-alterar/{id}(id=${ro.id})}"
+                                               class="edit" data-toggle="modal">
+                                                <i class="fa fa-edit" data-toggle="tooltip" title="Alterar"></i>
+                                            </a>
+                                            <a th:href="@{/ro/excluir/{id}(id=${ro.id})}"
+                                               th:data-confirm-delete="|Você gostaria de apagar ${ro.id}?|"
+                                               onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
+
+                                               id="alertDelete"
+                                               class="delete">
+                                                <i class="fa fa-times" style="color: red; margin-left: 10px;"
+                                                   data-toggle="tooltip" title="Excluir"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <div th:replace="~{/fragments/footer.html :: footer}"></div>

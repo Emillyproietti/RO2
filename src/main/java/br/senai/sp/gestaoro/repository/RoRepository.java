@@ -1,5 +1,6 @@
 package br.senai.sp.gestaoro.repository;
 
+import br.senai.sp.gestaoro.model.Aluno;
 import br.senai.sp.gestaoro.model.Professor;
 import br.senai.sp.gestaoro.model.Ro;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,6 @@ public interface RoRepository extends JpaRepository<Ro, Long> {
 
     //Lista de RO por professor
     List<Ro> findByProfessor(Professor professor);
+
+    List<Ro> findByAluno(Aluno aluno);
 }

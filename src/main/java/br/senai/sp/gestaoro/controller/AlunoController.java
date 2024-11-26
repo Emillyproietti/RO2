@@ -1,7 +1,9 @@
 package br.senai.sp.gestaoro.controller;
 
 import br.senai.sp.gestaoro.model.Aluno;
+import br.senai.sp.gestaoro.model.Ro;
 import br.senai.sp.gestaoro.repository.AlunoRepository;
+import br.senai.sp.gestaoro.repository.RoRepository;
 import br.senai.sp.gestaoro.repository.RoleRepository;
 import br.senai.sp.gestaoro.repository.TurmaRepository;
 import jakarta.validation.Valid;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/aluno")
@@ -31,6 +35,9 @@ public class AlunoController {
 
     @Autowired
     private TurmaRepository turmaRepository;
+
+    @Autowired
+    private RoRepository roRepository;
 
 
 
@@ -53,7 +60,7 @@ public class AlunoController {
     @GetMapping("/ficha")
     public String ficha(Model model) {
 
-        model.addAttribute("turmas", turmaRepository.findAll());
+
 
         model.addAttribute("aluno", new Aluno());
         return "aluno/ficha";
@@ -97,12 +104,25 @@ public class AlunoController {
         return "aluno/form-alterar";
     }
 
+    @GetMapping("/ficha/{id}")
+    public String ficha(@PathVariable("id") Long id, Model model) {
+        Aluno aluno = alunoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido"));
+
+        List<Ro> ros = roRepository.findByAluno(aluno);
+        model.addAttribute("ros", ros);
+
+        model.addAttribute("aluno", aluno);
+        return "aluno/ficha";
+    }
+
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Long id, RedirectAttributes attributes) {
         alunoRepository.deleteById(id);
         attributes.addFlashAttribute("mensagem", "Aluno excluído com sucesso!");
         return "redirect:/aluno";
     }
+
+
 
 
 }

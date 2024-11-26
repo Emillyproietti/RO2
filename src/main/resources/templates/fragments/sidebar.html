@@ -78,7 +78,24 @@
                             <p>Usuários</p>
                         </a>
                     </li>
+
+                            <li class="nav-item" sec:authorize="hasAnyAuthority('PROFESSOR','AQV','ALUNO')">
+                                <a href="/login">
+                                    <i class="icon-logout"></i>
+                                    <p>Sair</p>
+                                </a>
+                            </li>
+                                    <li class="nav-item" sec:authorize="hasAnyAuthority('ALUNO')">
+                                <a href="/aluno/ficha">
+                                    <i class="icon-doc"></i>
+                                    <p>R.O</p>
+                                </a>
+                                    </li>
+
+
+
                 </ul>
+
             </div>
         </div>
     </div>

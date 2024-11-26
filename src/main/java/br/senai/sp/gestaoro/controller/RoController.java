@@ -87,7 +87,6 @@ public class RoController {
             }
         }
 
-
         // recupera o usuário logado getPrincipal
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
@@ -95,10 +94,6 @@ public class RoController {
         //recupera a role
         List<Role> roles = (List<Role>) user.getRoles();
         Role role = roles.get(0);
-
-
-
-
 
         Long id = user.getId();
         Professor professor = professorRepository.findByUserId(id);
@@ -111,10 +106,34 @@ public class RoController {
             ro.setProfessor(professor2);
         }
 
+        javaSmtpGmailSenderService.sendEmail(
+                professor.getEmail(),
+                "Comunicado SENAI",
+                "Prezado(a)" +
+                        " " + ro.getAluno().getNmResponsavel() +
+                        " Informamos que seu(sua) filho(a)," +
+                        " " + ro.getAluno().getNome() +
+                        ", recebeu uma ocorrência no dia" +
+                        " " + ro.getDtRo() +"." +
+                        " Pedimos que retorne este e-mail confirmando o recebimento desta mensagem. É importante que o SENAI saiba que você está ciente da situação. Assim que confirmarmos, entraremos em contato para conversarmos sobre a situação.\n" +
+                        "Atenciosamente,\n" +
+                        "SENAI"
+        );
 
 
-
-        javaSmtpGmailSenderService.sendEmail(professor.getEmail(), "R.O Registrada pelo sistema", "Uma R.O foi registrada para o aluno ");
+        javaSmtpGmailSenderService.sendEmail(
+                ro.getAluno().getEmailResponsavel(),
+                "Comunicado SENAI",
+                "Prezado(a)" +
+                        " " + ro.getAluno().getNmResponsavel() +
+                        " Informamos que seu(sua) filho(a)," +
+                        " " + ro.getAluno().getNome() +
+                        ", recebeu uma ocorrência no dia" +
+                        " " + ro.getDtRo() +"." +
+                        " Pedimos que retorne este e-mail confirmando o recebimento desta mensagem. É importante que o SENAI saiba que você está ciente da situação. Assim que confirmarmos, entraremos em contato para conversarmos sobre a situação.\n" +
+                        "Atenciosamente,\n" +
+                        "SENAI"
+        );
 
 
         // Mensagem de sucesso

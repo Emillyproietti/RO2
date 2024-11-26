@@ -8,10 +8,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-@Getter
-@Setter
-public class JavaSmtpGmailSenderService {
 
+public class JavaSmtpGmailSenderService {
+    @Autowired
     private JavaMailSender emailSender;
 
     public void sendEmail(String toEmail, String subject, String body){

@@ -54,7 +54,7 @@
                                                     type="text"
                                                     class="form-control"
                                                     id="cpf"
-                                                    placeholder="Informe o Nome"
+                                                    placeholder="Informe o CPF"
                                                     th:field="*{cpf}"
                                             />
 
@@ -108,14 +108,50 @@
 
 
 
+                                        <div class="form-group form-inline">
+                                            <label
+                                                    for="nmResponsavel"
+                                                    class="col-md-12 col-form-label"
+                                            >Nome do Responsável</label
+                                            >
+                                            <div class="col-md-12 p-0">
+                                                <input
+                                                        type="text"
+                                                        class="form-control input-full"
+                                                        id="nmResponsavel"
+                                                        placeholder="Informe o Telefone"
+                                                        th:field="*{nmResponsavel}"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-inline">
+                                            <label
+                                                    for="emailResponsavel"
+                                                    class="col-md-12 col-form-label"
+                                            >Email do Responsável</label
+                                            >
+                                            <div class="col-md-12 p-0">
+                                                <input
+                                                        type="text"
+                                                        class="form-control input-full"
+                                                        id="emailResponsavel"
+                                                        placeholder="Informe o Telefone"
+                                                        th:field="*{emailResponsavel}"
+                                                />
+                                            </div>
+                                        </div>
+
+
+
                                         <div class="form-group">
-                                            <label for="senha">Senha</label>
+                                            <label for="password">Senha</label>
                                             <input
-                                                    type="senha"
+                                                    type="password"
                                                     class="form-control"
-                                                    id="senha"
-                                                    placeholder="Informe o Email"
-                                                    th:field="*{senha}"
+                                                    id="password"
+                                                    name="password"
+                                                    placeholder="Informe a senha"
+                                                    th:field="*{user.password}"
                                             />
                                         </div>
                                     </div>

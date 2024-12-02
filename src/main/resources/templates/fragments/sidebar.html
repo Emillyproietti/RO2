@@ -36,7 +36,7 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
             <div class="sidebar-content">
                 <ul class="nav nav-secondary">
-                    <li class="nav-item">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('AQV','PROFESSOR')">
                         <a href="/home">
                             <i class="fas fa-home"></i>
                             <p>Home</p>
